@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/global.css">
+    <link rel="stylesheet" href="./styles/login.css">
+    <title>Wearz - Sign Up</title>
+</head>
+<body>
+    <div class="col col-half hide-on-phone">
+        <div class="login-img" alt="Login Image" style="background-image: url('./images/register-image.jpg'); filter: brightness(0.5);"></div>
+    </div>
+
+    <div class="col col-half">
+        <div class="login-form">
+            <h1 style="text-align: center;">Welcome to Wearz</h1>
+            <h2 style="text-align: center;">Register</h2>
+            <form action="" class="form-control">
+                <small>Username</small>
+                <div><input class="input" type="text" id="username"></div>
+
+                <small>Email</small>
+                <div><input class="input" type="text" id="email"></div>
+
+                <small>Gender</small>
+                <div style="margin-bottom: 20px;">
+                    <input type="radio" name="gender" value id="male-gender">Male
+                    <input type="radio" name="gender" value id="female-gender">Female
+                </div>
+
+                <small>Skin Color</small>
+                <div>
+                    <select class="input" id="skinType" style="width: 100%; background-color: white;" name="" id="">
+                        <option value="light">Light</option>
+                        <option value="chocolate">Chocolate</option>
+                        <option value="dark">Dark</option>
+                        
+                    </select>
+                </div>
+
+                <small id="password">Password</small>
+                <div><input class="input" id="password" type="password"></div>
+
+                <small id="password">Confirm Password</small>
+                <div><input class="input" id="confirmPassword" type="password"></div>
+
+                <input class="input-button" onclick="register()" value="Register" type="button">
+            </form>
+            <div>
+                <small>Have an account already? <a href="login.html">Register</a></small>
+            </div>
+        </div>
+        
+    </div>
+    <script>
+        let username = document.getElementById(''),
+            email = document.getElementById(''),
+            gender = document.getElementById(''),
+            skinType = document.getElementById(''),
+            password = document.getElementById(''),
+            confirmPassword = document.getElementById('');
+
+            async function register() {
+                let response = await fetch('');
+            }
+
+    </script>
+</body>
+</html>

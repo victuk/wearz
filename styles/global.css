@@ -1,0 +1,17 @@
+.col {
+    box-sizing: border-box;
+    float: left;
+}
+
+.col-half {
+    width: 50%;
+}
+
+@media (max-width: 425px) {
+    .hide-on-phone {
+        display: none;
+    }
+    .col-half {
+        width: 100%;
+    }
+}
