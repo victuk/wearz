@@ -10,6 +10,8 @@
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Wearz - Wardrobe</title>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -61,7 +63,7 @@
     <div id="loading-animation">&nbsp;</div>
   </div>
 
-  
+
 
   <!-- Navbar -->
   <header class="header">
@@ -84,7 +86,10 @@
             <li class="active"><a class="section-scroll" href="index.html">Home</a></li>
             <li><a href="add.html" title="Add new clothes to your wardrobe">Add Clothes</a></li>
             <li><a href="all-wears.html" title="View all clothes in your wardrobe">View Wardrobe</a></li>
-            <li><a href="all-wears.html" title="View all clothes in your wardrobe">Log Out</a></li>
+            <li><a title="Log out">
+                <div id="logoutButton" style="cursor: pointer;">Log Out</div>
+              </a></li>
+
 
             <!-- <li><a href="#features-section">Services</a></li> -->
             <!-- <li><a href="#team-section">Team</a></li> -->
@@ -126,7 +131,7 @@
         <div class="hero-content">
           <div class="container">
             <div class="row">
-              
+
               <h1>Welcome User</h1>
               <div class="div-line"></div>
               <p class="hero">Choose Event Type</p>
@@ -140,8 +145,9 @@
               </div>
 
               <div class="hero-btn">
-                <a class="btn btn-primary" style="border-radius: 40px;">Search</a>
-                <button class="btn btn-clean" id="viewModalButton" style="border-radius: 40px; background-color: transparent;">Change Skin Type</button>
+                <a class="btn btn-primary" onclick="searchWarez()" style="border-radius: 40px;">Search</a>
+                <button class="btn btn-clean" id="viewModalButton"
+                  style="border-radius: 40px; background-color: transparent;">Change Skin Type</button>
               </div>
             </div> <!-- end row -->
           </div> <!-- End container -->
@@ -156,7 +162,7 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="closeViewModal close">&times;</span>
-        
+
         <div style="text-align: center;">
           <h1 style="color: orange;">Change Skin Type</h1>
           <div>
@@ -198,8 +204,16 @@
           viewModal.style.display = "none";
         }
       }
-    </script>
+
       
+
+      function searchWarez() {
+        let wearzType = document.getElementById('clothe-type').value;
+        location.assign('/wardrobe/wears.html?type=' + wearzType);
+      }
+
+    </script>
+
     <style>
       #clothe-type {
         background-color: transparent;
@@ -221,7 +235,8 @@
         border-radius: 50px;
       }
 
-      #clothe-type:focus, #skin-type:focus {
+      #clothe-type:focus,
+      #skin-type:focus {
         outline: none;
       }
 
@@ -233,8 +248,9 @@
         color: black;
       }
 
-     /* The Modal (background) */
-     .modal, #viewModal {
+      /* The Modal (background) */
+      .modal,
+      #viewModal {
         display: none;
         /* Hidden by default */
         position: fixed;
@@ -265,6 +281,7 @@
         padding: 20px;
         border: 1px solid #888;
         width: 80%;
+        margin-bottom: 50px;
       }
 
       /* The Close Button */
@@ -281,7 +298,16 @@
         text-decoration: none;
         cursor: pointer;
       }
-      
+
+      @media (max-width: 425px) {
+        #clothe-type {
+          width: 100%;
+        }
+        
+        #skin-type {
+          width: 100%;
+        }
+      }
     </style>
 
   </div> <!-- End wrapper -->
@@ -293,6 +319,7 @@
   </div> <!-- end back-to-top -->
 
   <!-- JS libraries and scripts -->
+  <script src="assets/checkIfLoggedIn.js"></script>
   <script src="assets/js/jquery-1.11.3.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/bootstrap-hover-dropdown.min.js"></script>

@@ -11,7 +11,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wearz - Wears</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <title>Wearz - Search Result</title>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
   <!-- Custom Google fonts -->
@@ -78,10 +80,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navigation-nav">
           <ul class="nav navbar-nav navbar-right">
+
             <li><a class="section-scroll" href="index.html">Home</a></li>
             <li><a href="add.html" title="Add new clothes to your wardrobe">Add Clothes</a></li>
             <li><a href="all-wears.html" title="View all clothes in your wardrobe">View Wardrobe</a></li>
-            <li><a href="all-wears.html" title="View all clothes in your wardrobe">Log Out</a></li>
+            <li><a title="View all clothes in your wardrobe"><div id="logoutButton" style="cursor: pointer;">Log Out</div></a></li>
+
             <!-- <li><a href="#features-section">Services</a></li> -->
             <!-- <li><a href="#team-section">Team</a></li> -->
             <!-- <li><a href="login.html">Login</a></li> -->
@@ -105,166 +109,12 @@
 
           <div class="offer-boxes">
 
-            <div class="row">
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-img-top img-v"
-                    style="background-image: url('./assets/images/shirt-colour-clothing-fashion.jpg'); width: 100%; height: 280px; background-size: cover; background-repeat: no-repeat;"
-                    alt="card image">
-                  </div>
-                  <div>
-                    <button type="button" class="btn btn-primary" style="width: 100%;"
-                      id="viewModalButton">View</button>
-                    <button type="button" class="btn btn-danger delete-button" id="deleteModalButton">Delete</button>
+            <div class="row" id="show-wearz">
 
-                    <!-- The Modal -->
-                    <div id="viewModal" class="modal">
 
-                      <!-- Modal content -->
-                      <div class="modal-content">
-                        <span class="closeViewModal close">&times;</span>
-                        <p>Look Good</p>
-                        <div class="card-img-top"
-                          style="background-image: url('./assets/images/shirt-colour-clothing-fashion.jpg'); width: 100%; height: 80vh; background-size: cover; background-repeat: no-repeat;"
-                          alt="card image">
-                        </div>
-                      </div>
-                    </div>
 
-                    <!-- The Modal -->
-                    <div id="deleteModal" class="modal">
 
-                      <!-- Modal content -->
-                      <div class="modal-content">
-                        <span class="closeDeleteModal close">&times;</span>
-                        <p>Some text in the Modal..</p>
-                      </div>
-
-                    </div>
-                  </div>
-
-                </div>
-              </div> <!-- End col-sm-3 -->
-
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-img-top img-v"
-                    style="background-image: url('./assets/images/shirt-colour-clothing-fashion.jpg'); width: 100%; height: 280px; background-size: cover; background-repeat: no-repeat;"
-                    alt="card image">
-                  </div>
-                  <div>
-                    <button type="button" class="btn btn-primary" style="width: 100%;"
-                      id="viewModalButton">View</button>
-                    <button type="button" class="btn btn-danger delete-button" id="deleteModalButton">Delete</button>
-
-                    <!-- The Modal -->
-                    <div id="viewModal" class="modal">
-
-                      <!-- Modal content -->
-                      <div class="modal-content">
-                        <span class="closeViewModal close">&times;</span>
-                        <p>Look Good</p>
-                        <div class="card-img-top"
-                          style="background-image: url('./assets/images/shirt-colour-clothing-fashion.jpg'); width: 100%; height: 80vh; background-size: cover; background-repeat: no-repeat;"
-                          alt="card image">
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- The Modal -->
-                    <div id="deleteModal" class="modal">
-
-                      <!-- Modal content -->
-                      <div class="modal-content">
-                        <span class="closeDeleteModal close">&times;</span>
-                        <p>Some text in the Modal..</p>
-                      </div>
-
-                    </div>
-                  </div>
-
-                </div>
-              </div> <!-- End col-sm-3 -->
-
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-img-top img-v"
-                    style="background-image: url('./assets/images/shirt-colour-clothing-fashion.jpg'); width: 100%; height: 280px; background-size: cover; background-repeat: no-repeat;"
-                    alt="card image">
-                  </div>
-                  <div>
-                    <button type="button" class="btn btn-primary" style="width: 100%;"
-                      id="viewModalButton">View</button>
-                    <button type="button" class="btn btn-danger delete-button" id="deleteModalButton">Delete</button>
-
-                    <!-- The Modal -->
-                    <div id="viewModal" class="modal">
-
-                      <!-- Modal content -->
-                      <div class="modal-content">
-                        <span class="closeViewModal close">&times;</span>
-                        <p>Look Good</p>
-                        <div class="card-img-top"
-                          style="background-image: url('./assets/images/shirt-colour-clothing-fashion.jpg'); width: 100%; height: 80vh; background-size: cover; background-repeat: no-repeat;"
-                          alt="card image">
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- The Modal -->
-                    <div id="deleteModal" class="modal">
-
-                      <!-- Modal content -->
-                      <div class="modal-content">
-                        <span class="closeDeleteModal close">&times;</span>
-                        <p>Some text in the Modal..</p>
-                      </div>
-
-                    </div>
-                  </div>
-
-                </div>
-              </div> <!-- End col-sm-3 -->
-
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-img-top img-v"
-                    style="background-image: url('./assets/images/shirt-colour-clothing-fashion.jpg'); width: 100%; height: 280px; background-size: cover; background-repeat: no-repeat;"
-                    alt="card image">
-                  </div>
-                  <div>
-                    <button type="button" class="btn btn-primary" style="width: 100%;"
-                      id="viewModalButton">View</button>
-                    <button type="button" class="btn btn-danger delete-button" id="deleteModalButton">Delete</button>
-
-                    <!-- The Modal -->
-                    <div id="viewModal" class="modal">
-
-                      <!-- Modal content -->
-                      <div class="modal-content">
-                        <span class="closeViewModal close">&times;</span>
-                        <p>Look Good</p>
-                        <div class="card-img-top"
-                          style="background-image: url('./assets/images/shirt-colour-clothing-fashion.jpg'); width: 100%; height: 80vh; background-size: cover; background-repeat: no-repeat;"
-                          alt="card image">
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- The Modal -->
-                    <div id="deleteModal" class="modal">
-
-                      <!-- Modal content -->
-                      <div class="modal-content">
-                        <span class="closeDeleteModal close">&times;</span>
-                        <p>Some text in the Modal..</p>
-                      </div>
-
-                    </div>
-                  </div>
-
-                </div>
-              </div> <!-- End col-sm-3 -->
+              
 
             </div> <!-- End row -->
 
@@ -274,55 +124,176 @@
     </section>
     <!-- End offer section -->
 
+    <div id="modal-space">
+
+    </div>
+
+    <div id="delete-modal-space">
+
+    </div>
+
+    <link rel="stylesheet" href="./assets/flash/flash.min.css">
+  <script src="./assets/flash/flash.min.js"></script>
+  <script src="./assets/flash/jquery-3.6.0.min.js"></script>
+  <script src="./assets/flash/flash.jquery.min.js"></script>
+  <script src="./assets/base-url.js"></script>
+
     <script>
+
+      
+
+      async function getAllWearz () {
+        let allWearz = await fetch(baseUrl + 'clothes', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            token: localStorage.getItem('wearzToken')
+          }
+        });
+
+        let data = await allWearz.json();
+
+        console.log(data);
+
+        let showWearz = document.getElementById('show-wearz');
+
+        for (let i = 0; i < data.length; i++) {
+          showWearz.innerHTML += `
+        
+        <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-img-top img-v"
+                    style="background-image: url('${data[i].picture}'); width: 100%; height: 280px; background-size: cover; background-repeat: no-repeat;"
+                    alt="card image">
+                  </div>
+                  <div>
+                    <button type="button" class="btn btn-primary viewModalButton" onclick="theModal('${data[i].picture}')" style="width: 100%;">View</button>
+                    <button type="button" class="btn btn-danger delete-button deleteModalButton" onclick="deleteModal('${data[i]._id}')">Delete</button>
+
+                    
+
+                    
+                  </div>
+
+                </div>
+              </div> <!-- End col-sm-3 -->
+        `;
+        }
+
+       
+      }
+
+      getAllWearz();
+
+      let modalSpace = document.getElementById('modal-space');
+
+      function theModal(image) {
+        modalSpace.style.display = 'block';
+        modalSpace.innerHTML = `
+        <!-- The Modal -->
+                    <div class="modal viewModal">
+
+                      <!-- Modal content -->
+                      <div class="modal-content">
+                        <span class="closeViewModal close"><div onclick="closeModal()">&times;</div></span>
+                        
+                        <div class="card-img-top"
+                          style="background-image: url('${image}'); width: 100%; height: 80vh; background-size: cover; background-repeat: no-repeat;"
+                          alt="card image">
+                        </div>
+                      </div>
+                    </div>
+        `;
+        // viewModal.style.display = "block";
+        // console.log(viewModal)
+      }
+
+      deleteModalSpace = document.getElementById('delete-modal-space');
+
+      function deleteModal(pictureId) {
+        deleteModalSpace.style.display = 'block';
+        deleteModalSpace.innerHTML = `
+        <!-- The Modal -->
+                    <div class="modal deleteModal">
+
+                      <!-- Modal content -->
+                      <div class="modal-content">
+                        <span class="closeDeleteModal close"><div onclick="closeDeleteModal()">&times;</div></span>
+                        <p>Are you sure you want to delete?</p>
+                        <button class="btn btn-primary" onclick='deletePic('${pictureId}')'>Yes</button>
+                        <button class="btn btn-primary">No</button>
+                      </div>
+                    </div>
+        `;
+      }
+
+      function closeModal() {
+        modalSpace.style.display = "none";
+      }
+
       // Get the modal
-      var viewModal = document.getElementById("viewModal");
+      var viewModal = document.querySelector(".viewModal");
+
+      
 
       // Get the button that opens the modal
-      var viewModalButton = document.getElementById("viewModalButton");
+      var viewModalButton = document.querySelector(".viewModalButton");
 
       // Get the <span> element that closes the modal
       var closeViewModal = document.getElementsByClassName("closeViewModal")[0];
 
       // When the user clicks the button, open the modal 
-      viewModalButton.onclick = function () {
-        viewModal.style.display = "block";
-      }
+      // viewModalButton.onclick = function () {
+      //   viewModal.style.display = "block";
+      // }
 
-      // When the user clicks on <span> (x), close the modal
-      closeViewModal.onclick = function () {
-        viewModal.style.display = "none";
-      }
 
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function (event) {
-        if (event.target.id == 'viewModal') {
+        console.log(event);
+        if (event.target == viewModal) {
           viewModal.style.display = "none";
+          console.log('here');
         }
 
-        if (event.target.id == 'deleteModal') {
+        if (event.target == deleteModal) {
           deleteModal.style.display = "none";
+          console.log('here too');
         }
       }
 
       // Get the modal
-      var deleteModal = document.getElementById("deleteModal");
+      var deleteModal = document.querySelector(".deleteModal");
 
       // Get the button that opens the modal
-      var deleteModalButton = document.getElementById("deleteModalButton");
+      var deleteModalButton = document.querySelector(".deleteModalButton");
 
       // Get the <span> element that closes the modal
       var closeDeleteModal = document.getElementsByClassName("closeDeleteModal")[0];
 
-      // When the user clicks the button, open the modal 
-      deleteModalButton.onclick = function () {
-        deleteModal.style.display = "block";
+      function closeModal() {
+        modalSpace.style.display = "none";
       }
 
-      // When the user clicks on <span> (x), close the modal
-      closeDeleteModal.onclick = function () {
-        deleteModal.style.display = "none";
+      function closeDeleteModal() {
+        deleteModalSpace.style.display = "none";
       }
+
+      async function deletePic(id) {
+        let response = await fetch(baseUrl + 'clothe', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            token: localStorage.getItem('wearzToken')
+          }
+        });
+      }
+
+      function showType() {
+        console.log(location.search.slice(6));
+      }
+
+      showType();
 
     </script>
 
@@ -343,10 +314,18 @@
         text-transform: uppercase;
       }
 
+      #modalSpace {
+        display: none;
+      }
+
+      .card {
+        margin: 20px 0;
+      }
+
       /* The Modal (background) */
       .modal,
       .deleteModal {
-        display: none;
+        display: block;
         /* Hidden by default */
         position: fixed;
         /* Stay in place */
@@ -375,6 +354,7 @@
         padding: 20px;
         border: 1px solid #888;
         width: 80%;
+        margin-bottom: 50px;
       }
 
       /* The Close Button */
@@ -402,6 +382,7 @@
   </div> <!-- end back-to-top -->
 
   <!-- JS libraries and scripts -->
+  <script src="assets/checkIfLoggedIn.js"></script>
   <script src="assets/js/jquery-1.11.3.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
@@ -421,7 +402,6 @@
   <script src="assets/js/jquery.ajaxchimp.min.js"></script>
   <script src="assets/js/jquery.countdown.js"></script>
   <script src="assets/js/jquery.navbar-scroll.js"></script>
-  <script src="assets/js/jquery.gmaps.js"></script>
   <script src="assets/js/main.js"></script>
 
 </body>

@@ -5,11 +5,14 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html lang="en">
+
 <head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
   <title>Wearz - Add Wears</title>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
@@ -50,12 +53,13 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-	
+
 </head>
+
 <body>
 
   <!-- Preload the Whole Page -->
-  <div id="preloader">      
+  <div id="preloader">
     <div id="loading-animation">&nbsp;</div>
   </div>
 
@@ -80,7 +84,9 @@
             <li><a class="section-scroll" href="index.html">Home</a></li>
             <li class="active"><a href="add.html" title="Add new clothes to your wardrobe">Add Clothes</a></li>
             <li><a href="all-wears.html" title="View all clothes in your wardrobe">View Wardrobe</a></li>
-            <li><a href="all-wears.html" title="View all clothes in your wardrobe">Log Out</a></li>
+            <li><a title="View all clothes in your wardrobe">
+                <div id="logoutButton" style="cursor: pointer;">Log Out</div>
+              </a></li>
             <!-- <li><a href="#features-section">Services</a></li> -->
             <!-- <li><a href="#team-section">Team</a></li> -->
             <!-- <li><a href="login.html">Login</a></li> -->
@@ -96,8 +102,6 @@
 
   <div id="wrapper">
 
-     
-
     <!-- Contact-section
     ================================================== -->
     <section>
@@ -106,9 +110,9 @@
         <div class="container">
 
           <div class="title-section text-center animated out" data-animation="fadeInUp" data-delay="0">
-              <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
-                  <h2>Add clothes/accessories</h2>
+            <div class="row">
+              <div class="col-sm-8 col-sm-offset-2">
+                <h2>Add clothes/accessories</h2>
               </div>
             </div> <!-- End row -->
           </div> <!-- end title-section -->
@@ -116,32 +120,33 @@
           <div class="form-wrapper">
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
-                
+
                 <!-- form fields -->
-                <form style="text-align: center;" action="assets/php/contact.php.htm" method="post" name="contactform" id="contactform" class="animated out" data-animation="fadeInUp" data-delay="0">
+                <form style="text-align: center;" action="assets/php/contact.php.htm" method="post" name="contactform"
+                  id="contactform" class="animated out" data-animation="fadeInUp" data-delay="0">
 
                   <fieldset>
                     <div class="form-group">
                       <label id="picture">
                         <img src="./assets/images/camera.png" style="width: 50px; height: 50px;" alt="">
-                        <input type="file" >
-                        Choose an image to upload
+                        <input type="file" id="file" accept="image/*" />
+                        <div id=image-name></div>
                       </label>
-                      
+
                     </div>
 
                   </fieldset>
-                  
+
                   <!-- submit button -->
                   <div class="form-group">
-                    <input type="submit" name="submit" value="Upload" class="btn btn-primary btn-lg" id="upload-button">
+                    <input type="button" value="Upload" class="btn btn-primary btn-lg" id="upload-button">
                   </div>
 
                 </form>
 
               </div> <!-- end col-md-8 -->
             </div> <!-- end row -->
-          </div>  <!-- end form-wrapper -->
+          </div> <!-- end form-wrapper -->
 
         </div> <!-- end container -->
 
@@ -156,19 +161,24 @@
       #picture {
         height: 200px;
         width: 200px;
-        padding: 50px;
+        /* padding: 50px; */
+        display: flex;
         background-color: black;
         margin: 0 auto;
         border-radius: 50%;
         color: white;
         font-weight: bold;
         cursor: pointer;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
       }
 
       input[type="file"] {
-    display: none;
-}
-
+        display: none;
+      }
     </style>
 
   </div> <!-- End wrapper -->
@@ -179,7 +189,61 @@
     <i class="fa fa-angle-up fa-3x"></i>
   </div> <!-- end back-to-top -->
 
+  <link rel="stylesheet" href="./assets/flash/flash.min.css">
+  <script src="./assets/flash/flash.min.js"></script>
+  <script src="./assets/flash/jquery-3.6.0.min.js"></script>
+  <script src="./assets/flash/flash.jquery.min.js"></script>
+  <script src="./assets/base-url.js"></script>
+
+  <script>
+
+
+    let uploadButton = document.getElementById('upload-button');
+
+    document.getElementById('file').onchange = function () {
+      let imageName = document.getElementById('image-name');
+      imageName.innerText = document.getElementById('file').files[0].name;
+    }
+
+    uploadButton.onclick = async function () {
+      let file = document.getElementById('file').files[0];
+
+      let formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', cloudinaryPreset);
+
+      let response = await fetch(cloudinaryUrl, {
+        method: 'POST',
+        body: formData
+      });
+
+      let data = await response.json();
+
+      let backendResponse = await fetch(baseUrl + 'clothe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          token: localStorage.getItem('wearzToken')
+        },
+        body: JSON.stringify({
+          clotheType: 'none',
+          picture: data.secure_url,
+          publicId: data.public_id
+        })
+      });
+
+      let backendData = await backendResponse.json();
+      
+      if(backendData.status == true) {
+        window.FlashMessage.success('New Clothe added');
+      }
+
+    }
+
+  </script>
+
   <!-- JS libraries and scripts -->
+  <script src="assets/checkIfLoggedIn.js"></script>
   <script src="assets/js/jquery-1.11.3.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
@@ -199,8 +263,7 @@
   <script src="assets/js/jquery.ajaxchimp.min.js"></script>
   <script src="assets/js/jquery.countdown.js"></script>
   <script src="assets/js/jquery.navbar-scroll.js"></script>
-  <script src="assets/js/jquery.gmaps.js"></script>
   <script src="assets/js/main.js"></script>
-
 </body>
+
 </html>

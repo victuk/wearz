@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
     <link rel="stylesheet" href="./styles/global.css">
     <link rel="stylesheet" href="./styles/login.css">
     <title>Wearz - Sign Up</title>
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 </head>
+
 <body>
     <div class="col col-half hide-on-phone">
-        <div class="login-img" alt="Login Image" style="background-image: url('./images/register-image.jpg'); filter: brightness(0.5);"></div>
+        <div class="login-img" alt="Login Image"
+            style="background-image: url('./images/register-image.jpg'); filter: brightness(0.5);"></div>
     </div>
 
     <div class="col col-half">
@@ -20,15 +25,15 @@
             <h2 style="text-align: center;">Register</h2>
             <form action="" class="form-control">
                 <small>Username</small>
-                <div><input class="input" type="text" id="username"></div>
+                <div><input class="input" type="text" id="username" autofocus></div>
 
                 <small>Email</small>
                 <div><input class="input" type="text" id="email"></div>
 
                 <small>Gender</small>
                 <div style="margin-bottom: 20px;">
-                    <input type="radio" name="gender" value id="male-gender">Male
-                    <input type="radio" name="gender" value id="female-gender">Female
+                    <input type="radio" name="gender" value="male" id="male-gender">Male
+                    <input type="radio" name="gender" value="female" id="female-gender">Female
                 </div>
 
                 <small>Skin Color</small>
@@ -37,36 +42,116 @@
                         <option value="light">Light</option>
                         <option value="chocolate">Chocolate</option>
                         <option value="dark">Dark</option>
-                        
+
                     </select>
                 </div>
 
-                <small id="password">Password</small>
+                <small>Password</small>
                 <div><input class="input" id="password" type="password"></div>
 
-                <small id="password">Confirm Password</small>
+                <small>Confirm Password</small>
                 <div><input class="input" id="confirmPassword" type="password"></div>
 
-                <input class="input-button" onclick="register()" value="Register" type="button">
+                <input class="input-button" id="registerButton" value="Register" type="button">
             </form>
             <div>
                 <small>Have an account already? <a href="login.html">Register</a></small>
             </div>
         </div>
-        
+
+        <link rel="stylesheet" href="./wardrobe/assets/flash/flash.min.css">
+        <script src="./wardrobe/assets/flash/flash.min.js"></script>
+        <script src="./wardrobe/assets/flash/jquery-3.6.0.min.js"></script>
+        <script src="./wardrobe/assets/flash/flash.jquery.min.js"></script>
+        <script src="./wardrobe/assets/base-url.js"></script>
+
+
+
+
     </div>
     <script>
-        let username = document.getElementById(''),
-            email = document.getElementById(''),
-            gender = document.getElementById(''),
-            skinType = document.getElementById(''),
-            password = document.getElementById(''),
-            confirmPassword = document.getElementById('');
 
-            async function register() {
-                let response = await fetch('');
+        let registerButton = document.getElementById('registerButton');
+
+        async function register() {
+
+            let username = document.getElementById('username').value,
+                email = document.getElementById('email').value,
+                gender = document.getElementsByName('gender'),
+                skinType = document.getElementById('skinType').value,
+                password = document.getElementById('password').value,
+                confirmPassword = document.getElementById('confirmPassword').value;
+
+            let genderValue;
+
+            for (let i = 0; i < gender.length; i++) {
+                if (gender[i].checked)
+                    // console.log("Gender: "+gender[i].value);
+                    genderValue = gender[i].value
             }
+
+
+            console.log(baseUrl);
+            if (
+                username == ''
+                || email == ''
+                || genderValue == ''
+                || skinType == ''
+                || password == ''
+                || confirmPassword == ''
+
+            ) {
+                window.FlashMessage.warning('All fields are required');
+            } else {
+                if (password !== confirmPassword) {
+                    window.FlashMessage.warning('Password and Confirm Password values do not match');
+                } else {
+                    if (username.length < 6 || password < 6) {
+                        window.FlashMessage.warning('Username and password has to be at least 6 digits');
+                    } else {
+                        let response = await fetch(baseUrl + 'register', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                fullName: username,
+                                email,
+                                skinType,
+                                gender: genderValue,
+                                password
+                            })
+                        });
+
+                        let data = await response.json();
+
+                        if (data.status == true) {
+                            window.FlashMessage.success('Registration is successful');
+                            setTimeout(
+                                () => {
+                                    location.replace('/login.html');
+                                }, 2000);
+                        } else {
+                            window.FlashMessage.success(data.message);
+                        }
+
+                        
+
+                        
+                    }
+                }
+
+            }
+
+        }
+
+
+
+
+
+        registerButton.onclick = register;
 
     </script>
 </body>
+
 </html>
