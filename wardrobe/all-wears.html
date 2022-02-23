@@ -294,7 +294,7 @@
       }
 
       async function deletePic(id) {
-        let response = await fetch(baseUrl + 'clothe', {
+        let response = await fetch(baseUrl + 'clothe/' + id, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
