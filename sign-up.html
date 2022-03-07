@@ -109,6 +109,7 @@
                     if (username.length < 6 || password < 6) {
                         window.FlashMessage.warning('Username and password has to be at least 6 digits');
                     } else {
+                        registerButton.value = 'Loading...';
                         let response = await fetch(baseUrl + 'register', {
                             method: 'POST',
                             headers: {
@@ -127,6 +128,7 @@
 
                         if (data.status == true) {
                             window.FlashMessage.success('Registration is successful');
+                            registerButton.value = 'Register';
                             setTimeout(
                                 () => {
                                     location.replace('/login.html');

@@ -50,6 +50,7 @@
         loginButton.onclick = async function () {
             let email = document.getElementById('email').value;
             let password = document.getElementById('password').value;
+            loginButton.value = 'Loading...';
 
             if (email == '' || password == '') {
                 window.FlashMessage.warning('Username and password has to be at least 6 digits');
@@ -72,11 +73,13 @@
                 if (data.status == true) {
                     window.FlashMessage.success('Welcome');
                     localStorage.setItem('wearzToken', data.token);
+                    loginButton.value = 'Log In';
                     setTimeout(
                         () => {
                             location.replace('/wardrobe/index.html');
                         }, 2000);
                 } else {
+                    loginButton.value = 'Log In';
                     window.FlashMessage.success('Incorrect username or password');
                 }
             }
