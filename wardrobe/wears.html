@@ -205,7 +205,7 @@
         }
 
         async function getAllWearz() {
-          let allWearz = await fetch(baseUrl + "clothes", {
+          let allWearz = await fetch(baseUrl + "clothe/" + location.search.slice(6), {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -221,7 +221,9 @@
 
           if (data.length == 0) {
             showWearz.innerHTML =
-              '<h1 style="text-align: center;">No data</h1>';
+              `<h1 style="text-align: center;">No data</h1>
+              <div style="text-align: center;">Upload Clothes <a href="add.html">here</a>...</div>
+              `;
           } else {
             for (let i = 0; i < data.length; i++) {
               showWearz.innerHTML += `

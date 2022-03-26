@@ -237,6 +237,10 @@
       
       if(backendData.status == true) {
         window.FlashMessage.success('New Clothe added');
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
+        
       }
 
     }

@@ -132,7 +132,7 @@
           <div class="container">
             <div class="row">
 
-              <h1>Welcome User</h1>
+              <h1>Welcome <div id="showUserName"></div></h1>
               <div class="div-line"></div>
               <p class="hero">Choose Event Type</p>
               <div>
@@ -178,6 +178,12 @@
       </div>
     </div>
 
+    <link rel="stylesheet" href="./assets/flash/flash.min.css">
+  <script src="./assets/flash/flash.min.js"></script>
+  <script src="./assets/flash/jquery-3.6.0.min.js"></script>
+  <script src="./assets/flash/flash.jquery.min.js"></script>
+  <script src="./assets/base-url.js"></script>
+
     <script>
       // Get the modal
       var viewModal = document.getElementById("viewModal");
@@ -204,6 +210,25 @@
           viewModal.style.display = "none";
         }
       }
+
+      let userName = document.getElementById('showUserName');
+
+      async function getUsersName() {
+        let response = await fetch(baseUrl + 'users/profile', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            token: localStorage.getItem('wearzToken')
+          }
+        });
+
+        let res = await response.json();
+        
+        let usernameResult = res.user.fullName;
+        userName.innerText = usernameResult;
+      }
+
+      getUsersName();
 
       
 
