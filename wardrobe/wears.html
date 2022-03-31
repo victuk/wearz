@@ -200,9 +200,15 @@
       <script src="./assets/base-url.js"></script>
 
       <script>
-        function getRndInteger(min, max) {
+
+function getRndInteger(min, max) {
           return Math.floor(Math.random() * (max - min)) + min;
         }
+
+        
+        
+
+        
 
         async function getAllWearz() {
           let allWearz = await fetch(baseUrl + "clothe/" + location.search.slice(6), {
@@ -215,7 +221,6 @@
 
           let data = await allWearz.json();
 
-          console.log(data);
 
           let showWearz = document.getElementById("show-wearz");
 
@@ -269,7 +274,6 @@
                     </div>
         `;
           // viewModal.style.display = "block";
-          // console.log(viewModal)
         }
 
         deleteModalSpace = document.getElementById("delete-modal-space");
@@ -314,12 +318,10 @@
         window.onclick = function (event) {
           if (event.target == viewModal) {
             viewModal.style.display = "none";
-            console.log("here");
           }
 
           if (event.target == deleteModal) {
             deleteModal.style.display = "none";
-            console.log("here too");
           }
         };
 
@@ -362,15 +364,13 @@
             })
           });
           let res = await response.json();
-          console.log(res);
-          console.log('Deleted');
         }
 
-        function showType() {
-          console.log(location.search.slice(6));
-        }
+        // function showType() {
+        //   return location.search.slice(6);
+        // }
 
-        showType();
+        // showType();
 
         let recommend = document.getElementById("recommend-modal");
 
@@ -404,19 +404,19 @@
                     </div>
         `;
           // viewModal.style.display = "block";
-          // console.log(viewModal)
         }
 
         async function showRecommendedTop() {
           let gender = await checkGender();
           for (let i = 0; i < 8; i++) {
             let clothe;
-            let random = getRndInteger(1, 10);
+            let random = randomArr[i];
             if (random.toLocaleString().length == 1) {
               let str = "0" + random.toLocaleString();
               clothe = str;
+            } else {
+              clothe = random.toString();
             }
-            console.log(clothe);
             recommend.innerHTML += `
 
           <div class="col-sm-3">
@@ -441,7 +441,7 @@
           `;
           }
         }
-        showRecommendedTop();
+        
 
         let recommendDown = document.getElementById("recommend-modal-down");
         let recommendDownModal = document.getElementById(
@@ -470,19 +470,19 @@
                     </div>
         `;
           // viewModal.style.display = "block";
-          // console.log(viewModal)
         }
 
         async function showRecommendedDown() {
           let gender = await checkGender();
           for (let i = 0; i < 8; i++) {
             let clothe;
-            let random = getRndInteger(1, 10);
-            if (random.toLocaleString().length == 1) {
+            let random = randomArr[i];
+            if (random.toString().length == 1) {
               let str = "0" + random.toLocaleString();
               clothe = str;
+            }  else {
+              clothe = random.toString();
             }
-            console.log(clothe);
             recommendDown.innerHTML += `
 
           <div class="col-sm-3">
@@ -507,7 +507,7 @@
           `;
           }
         }
-        showRecommendedDown();
+        
 
         let recommendAccessories = document.getElementById(
           "recommend-modal-accessories"
@@ -538,25 +538,19 @@
                     </div>
         `;
           // viewModal.style.display = "block";
-          // console.log(viewModal)
         }
 
         async function showRecommendedAccessories() {
           let gender = await checkGender();
           for (let i = 0; i < 8; i++) {
             let clothe;
-            let random = getRndInteger(1, 10);
-
+            let random = randomArr[i];
             if (random.toLocaleString().length == 1) {
               let str = "0" + random.toLocaleString();
               clothe = str;
-            } else if (str == undefined) {
-              str = "01";
-            } else {
-              clothe = str;
+            }  else {
+              clothe = random.toString();
             }
-
-            console.log(clothe);
             recommendAccessories.innerHTML += `
 
           <div class="col-sm-3">
@@ -581,7 +575,7 @@
           `;
           }
         }
-        showRecommendedAccessories();
+        
 
         let recommendShoes = document.getElementById("recommend-modal-shoes");
         let recommendShoesModal = document.getElementById(
@@ -610,19 +604,19 @@
                     </div>
         `;
           // viewModal.style.display = "block";
-          // console.log(viewModal)
         }
 
         async function showRecommendedShoes() {
           let gender = await checkGender();
           for (let i = 0; i < 8; i++) {
             let clothe;
-            let random = getRndInteger(1, 10);
-            if (random.toLocaleString().length == 1) {
-              let str = "0" + random.toLocaleString();
+            let random = randomArr[i];
+            if (random.toString().length == 1) {
+              let str = "0" + random.toString();
               clothe = str;
+            }  else {
+              clothe = random.toString();
             }
-            console.log(clothe);
             recommendShoes.innerHTML += `
 
           <div class="col-sm-3">
@@ -647,7 +641,31 @@
           `;
           }
         }
-        showRecommendedShoes();
+        
+
+
+        var randomArr = [];
+        
+        function generateRandomArr() {
+          let randInt;
+          let i = 0;
+
+          while(i < 8) {
+            randInt = getRndInteger(1, 20);
+            if(randomArr.includes(randInt)) {
+              continue;
+            } else {
+              randomArr.push(randInt);
+              i++;
+            }
+          }
+          showRecommendedTop();
+          showRecommendedDown();
+          showRecommendedAccessories();
+          showRecommendedShoes();
+        }
+
+        generateRandomArr();
       </script>
 
       <section>

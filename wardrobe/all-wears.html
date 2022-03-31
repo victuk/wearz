@@ -153,8 +153,6 @@
 
         let data = await allWearz.json();
 
-        console.log(data);
-
         let showWearz = document.getElementById('show-wearz');
 
         for (let i = 0; i < data.length; i++) {
@@ -202,7 +200,6 @@
                     </div>
         `;
         // viewModal.style.display = "block";
-        // console.log(viewModal)
       }
 
       deleteModalSpace = document.getElementById('delete-modal-space');
@@ -251,15 +248,12 @@
 
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function (event) {
-        console.log(event);
         if (event.target == viewModal) {
           viewModal.style.display = "none";
-          console.log('here');
         }
 
         if (event.target == deleteModal) {
           deleteModal.style.display = "none";
-          console.log('here too');
         }
       }
 
