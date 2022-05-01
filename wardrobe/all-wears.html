@@ -150,7 +150,12 @@
 
         let showWearz = document.getElementById('show-wearz');
 
-        for (let i = 0; i < data.length; i++) {
+        if(data.length == 0) {
+          showWearz.innerHTML = `<h1 style="text-align: center;">No Clothes</h1>
+              <div style="text-align: center;">Upload Clothes <a href="add.html">here</a>...</div>
+              `;
+        } else {
+          for (let i = 0; i < data.length; i++) {
           showWearz.innerHTML += `
         
         <div class="col-sm-3">
@@ -169,8 +174,7 @@
               </div> <!-- End col-sm-3 -->
         `;
         }
-
-       
+        }
       }
 
       getAllWearz();
@@ -292,7 +296,13 @@
           });
           let res = await response.json();
 
-          console.log(res);
+          if(res.success == true) {
+            closeDeleteModal();
+            window.FlashMessage.success('Delete Successful');
+            setTimeout(() => {
+              location.reload();
+            }, 2000);
+          }
 
         }
       
