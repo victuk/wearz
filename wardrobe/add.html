@@ -139,7 +139,7 @@
 
                   <!-- submit button -->
                   <div class="form-group">
-                    <input type="button" value="Upload" class="btn btn-primary btn-lg" id="upload-button">
+                    <div class="btn btn-primary btn-lg" id="upload-button">Upload</div>
                   </div>
 
                 </form>
@@ -207,6 +207,8 @@
 
     uploadButton.onclick = async function () {
       let file = document.getElementById('file').files[0];
+      
+      uploadButton.innerHTML = ` Uploading... Please wait <img src="../images/loading.gif" style="width: 20px; height: 20px;" alt="loading" />`;
 
       let formData = new FormData();
       formData.append('file', file);
@@ -233,17 +235,24 @@
       });
 
       let backendData = await backendResponse.json();
-      
+
+      uploadButton.innerHTML = 'Upload';
       if(backendData.status == true) {
-        window.FlashMessage.success('New Clothe added');
+        console.log(backendData);
+        if (backendData.savedWear.clotheType == 'official') {
+          window.FlashMessage.success('New Clothe added, this clothe can be found in Coperate or Wedding section');
+        } else {
+          window.FlashMessage.success('New Clothe added, this clothe can be found in ' + backendData.savedWear.clotheType + ' section');
+        }
+        
         setTimeout(() => {
           location.reload();
         }, 2000);
         
+      } else {
+        window.FlashMessage.info('An error occured');
       }
-
     }
-
   </script>
 
   <!-- JS libraries and scripts -->
