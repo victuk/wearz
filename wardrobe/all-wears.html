@@ -166,7 +166,7 @@
                   </div>
                   <div>
                     <button type="button" class="btn btn-primary viewModalButton" onclick="theModal('${data[i].picture}')" style="width: 100%;">View</button>
-                    <button type="button" class="btn btn-danger delete-button deleteModalButton" onclick="deleteModal('${data[i]._id}')">Delete</button>
+                    <button type="button" class="btn btn-danger delete-button deleteModalButton" onclick="deleteModal('${data[i]._id}', '${data[i].publicId}')">Delete</button>
                     
                   </div>
 
@@ -204,7 +204,7 @@
 
       deleteModalSpace = document.getElementById('delete-modal-space');
 
-      function deleteModal(pictureId) {
+      function deleteModal(pictureId, publicId) {
         deleteModalSpace.style.display = 'block';
         deleteModalSpace.innerHTML = `
         <!-- The Modal -->
@@ -214,7 +214,7 @@
                       <div class="modal-content">
                         <span class="closeDeleteModal close"><div onclick="closeDeleteModal()">&times;</div></span>
                         <p>Are you sure you want to delete?</p>
-                        <button class="btn btn-primary" onclick='deletePic('${pictureId}')'>Yes</button>
+                        <button class="btn btn-primary" onclick='deletePic('${pictureId}', '${publicId}')'>Yes</button>
                         <button class="btn btn-primary" onClick='closeDeleteModal()'>No</button>
                       </div>
                     </div>
@@ -284,14 +284,21 @@
         deleteModalSpace.style.display = "none";
       }
 
-      async function deletePic(id) {
+      async function deletePic(id, publicId) {
         let response = await fetch(baseUrl + 'clothe/' + id, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
             token: localStorage.getItem('wearzToken')
-          }
+          },
+          body: JSON.stringify({
+              publicId
+            })
         });
+
+        let res = await response.json();
+
+        console.log(res);
       }
 
     </script>
