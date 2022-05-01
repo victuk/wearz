@@ -1,9 +1,4 @@
 ﻿<!DOCTYPE html>
-<!--
-	Salient by TEMPLATE STOCK
-	templatestock.co @templatestock
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
 <html lang="en">
 
 <head>
@@ -190,7 +185,7 @@
 
                       <!-- Modal content -->
                       <div class="modal-content">
-                        <span class="closeViewModal close"><div onclick="closeModal()">&times;</div></span>
+                        <span class="close"><div onclick="closeModal()">&times;</div></span>
                         
                         <div class="card-img-top modalImage"
                           style="background-image: url('${image}'); height: 80vh; background-size: contain; background-repeat: no-repeat; margin: 10px auto;"
@@ -214,7 +209,7 @@
                       <div class="modal-content">
                         <span class="closeDeleteModal close"><div onclick="closeDeleteModal()">&times;</div></span>
                         <p>Are you sure you want to delete?</p>
-                        <button class="btn btn-primary" onclick='deletePic('${pictureId}', '${publicId}')'>Yes</button>
+                        <button class="btn btn-primary" onclick="deletePic('${pictureId}', '${publicId}')">Yes</button>
                         <button class="btn btn-primary" onClick='closeDeleteModal()'>No</button>
                       </div>
                     </div>
@@ -285,21 +280,22 @@
       }
 
       async function deletePic(id, publicId) {
-        let response = await fetch(baseUrl + 'clothe/' + id, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-            token: localStorage.getItem('wearzToken')
-          },
-          body: JSON.stringify({
+          let response = await fetch(baseUrl + "clothe/" + id, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              token: localStorage.getItem("wearzToken"),
+            },
+            body: JSON.stringify({
               publicId
             })
-        });
+          });
+          let res = await response.json();
 
-        let res = await response.json();
+          console.log(res);
 
-        console.log(res);
-      }
+        }
+      
 
     </script>
 
