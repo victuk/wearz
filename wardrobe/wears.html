@@ -205,10 +205,20 @@ function getRndInteger(min, max) {
           return Math.floor(Math.random() * (max - min)) + min;
         }
 
-        
-        
+       // Get the modal
+       var viewModal = document.querySelector(".viewModal");
 
-        
+// Get the button that opens the modal
+var viewModalButton = document.querySelector(".viewModalButton");
+
+// Get the <span> element that closes the modal
+var closeViewModal =
+  document.getElementsByClassName("closeViewModal")[0];
+
+// When the user clicks the button, open the modal
+// viewModalButton.onclick = function () {
+//   viewModal.style.display = "block";
+// }
 
         async function getAllWearz() {
           let allWearz = await fetch(baseUrl + "clothe/" + location.search.slice(6), {
@@ -276,7 +286,7 @@ function getRndInteger(min, max) {
           // viewModal.style.display = "block";
         }
 
-        deleteModalSpace = document.getElementById("delete-modal-space");
+        const deleteModalSpace = document.getElementById("delete-modal-space");
 
         function deleteModal(pictureId, publicId) {
           deleteModalSpace.style.display = "block";
@@ -288,8 +298,8 @@ function getRndInteger(min, max) {
                       <div class="modal-content">
                         <span class="closeDeleteModal close"><div onclick="closeDeleteModal()">&times;</div></span>
                         <p>Are you sure you want to delete?</p>
-                        <button class="btn btn-primary" onclick='deletePic('${pictureId}', '${publicId}')'>Yes</button>
-                        <button class="btn btn-primary">No</button>
+                        <button class="btn btn-primary" onclick="deletePic('${pictureId}', '${publicId}')">Yes</button>
+                        <button class="btn btn-primary" onClick='closeDeleteModal()'>No</button>
                       </div>
                     </div>
         `;
@@ -300,19 +310,7 @@ function getRndInteger(min, max) {
         }
 
         // Get the modal
-        var viewModal = document.querySelector(".viewModal");
-
-        // Get the button that opens the modal
-        var viewModalButton = document.querySelector(".viewModalButton");
-
-        // Get the <span> element that closes the modal
-        var closeViewModal =
-          document.getElementsByClassName("closeViewModal")[0];
-
-        // When the user clicks the button, open the modal
-        // viewModalButton.onclick = function () {
-        //   viewModal.style.display = "block";
-        // }
+        var deleteModall = document.querySelector(".deleteModal");
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
@@ -320,8 +318,8 @@ function getRndInteger(min, max) {
             viewModal.style.display = "none";
           }
 
-          if (event.target == deleteModal) {
-            deleteModal.style.display = "none";
+          if (event.target == deleteModall) {
+            deleteModall.style.display = "none";
           }
         };
 
@@ -330,14 +328,13 @@ function getRndInteger(min, max) {
           "recommend-modal-space"
         );
 
-        // Get the modal
-        var deleteModal = document.querySelector(".deleteModal");
+        
 
         // Get the button that opens the modal
         var deleteModalButton = document.querySelector(".deleteModalButton");
 
         // Get the <span> element that closes the modal
-        var closeDeleteModal =
+        var closeDeleteModall =
           document.getElementsByClassName("closeDeleteModal")[0];
 
         function closeModal() {
@@ -357,7 +354,7 @@ function getRndInteger(min, max) {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
-              token: localStorage.getItem("wearzToken"),
+              token: localStorage.getItem("wearzToken")
             },
             body: JSON.stringify({
               publicId
