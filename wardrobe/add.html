@@ -223,6 +223,7 @@
 
       let backendResponse = await fetch(baseUrl + 'clothe', {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
           token: localStorage.getItem('wearzToken')
