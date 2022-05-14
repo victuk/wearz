@@ -201,6 +201,52 @@
 
       <script>
 
+        async function getEmail() {
+          const response = await fetch(baseUrl + "users/profile", {
+            method: "GET",
+            headers: {
+              token: localStorage.getItem("wearzToken")
+            }
+          });
+          const email = await response.json();
+          return email.user.email;
+        }
+        
+
+async function payWithPaystack(amount, path) {
+    let userEmail = await getEmail();
+  let handler = PaystackPop.setup({
+    key: 'pk_test_8a461ca142641ca634dc9dec5dc7bee44c5e79c0', // Replace with your public key
+    email: userEmail,
+    amount: Number(amount) * 10 ** 2,
+    ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+    // label: "Optional string that replaces customer email"
+    callback: function(response){
+      let message = 'Payment complete! Reference: ' + response.reference;
+      alert(message);
+      console.log(response);
+      console.log(path);
+      fetch(baseUrl + 'order/order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          token: localStorage.getItem('wearzToken')
+        },
+        body: JSON.stringify({
+          path,
+          amount: Number(amount),
+          paystackPaymentDetails: response
+        })
+      }).then(res=> res.json()).then(data => {
+        console.log(data);
+      }).catch(error => {
+        console.log(error);
+      });
+    }
+  });
+  handler.openIframe();
+}
+
 function getRndInteger(min, max) {
           return Math.floor(Math.random() * (max - min)) + min;
         }
@@ -423,6 +469,9 @@ var closeViewModal =
             } else {
               clothe = random.toString();
             }
+
+            let price = Number(random) * 10 ** 4;
+            let hypePrice = Number(random) * 10 ** 4 + 20000;
             recommend.innerHTML += `
 
           <div class="col-sm-3">
@@ -436,10 +485,11 @@ var closeViewModal =
             )}/tops/clothe${clothe}.jpg')">
                   </div>
                   <div>
-                    <button type="button" class="btn btn-primary viewModalButton" style="border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px; width: 100%;" onclick="theRecommendModalTop('../images/recommend/${gender}/${location.search.slice(
+                    <button type="button" class="btn btn-primary viewModalButton" style="width: 100%;" onclick="theRecommendModalTop('../images/recommend/${gender}/${location.search.slice(
               6
             )}/tops/clothe${clothe}.jpg')" style="width: 100%;">View</button>
+            <button type="button" class="btn btn-primary viewModalButton" style="border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px; width: 100%;" onclick="payWithPaystack(${price}, '../images/recommend/${gender}/${location.search.slice(6)}/tops/clothe${clothe}.jpg')" style="width: 100%;"><del>N${hypePrice}</del> N${price} Buy</button>
                   </div>
 
                 </div>
@@ -448,6 +498,7 @@ var closeViewModal =
           }
         }
         
+        // onclick="theRecommendModalTop('../images/recommend/${gender}/${location.search.slice(6)}/tops/clothe${clothe}.jpg')"
 
         let recommendDown = document.getElementById("recommend-modal-down");
         let recommendDownModal = document.getElementById(
@@ -489,6 +540,9 @@ var closeViewModal =
             }  else {
               clothe = random.toString();
             }
+
+            let price = Number(random) * 10 ** 4;
+            let hypePrice = Number(random) * 10 ** 4 + 20000;
             recommendDown.innerHTML += `
 
           <div class="col-sm-3">
@@ -502,10 +556,11 @@ var closeViewModal =
             )}/down/clothe${clothe}.jpg')">
                   </div>
                   <div>
-                    <button type="button" class="btn btn-primary viewModalButton" style="border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px; width: 100%;" onclick="theRecommendDownModal('../images/recommend/${gender}/${location.search.slice(
+                    <button type="button" class="btn btn-primary viewModalButton" style="width: 100%;" onclick="theRecommendDownModal('../images/recommend/${gender}/${location.search.slice(
               6
             )}/down/clothe${clothe}.jpg')" style="width: 100%;">View</button>
+            <button type="button" class="btn btn-primary viewModalButton" style="border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px; width: 100%;" onclick="payWithPaystack(${price}, '../images/recommend/${gender}/${location.search.slice(6)}/tops/clothe${clothe}.jpg')" style="width: 100%;"><del>N${hypePrice}</del> N${price} Buy</button>
                   </div>
 
                 </div>
@@ -557,6 +612,10 @@ var closeViewModal =
             }  else {
               clothe = random.toString();
             }
+
+            let price = Number(random) * 10 ** 4;
+            let hypePrice = Number(random) * 10 ** 4 + 20000;
+
             recommendAccessories.innerHTML += `
 
           <div class="col-sm-3">
@@ -570,10 +629,11 @@ var closeViewModal =
             )}/accessories/clothe${clothe}.jpg')">
                   </div>
                   <div>
-                    <button type="button" class="btn btn-primary viewModalButton" style="border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px; width: 100%;" onclick="theRecommendAccessoriesModal('../images/recommend/${gender}/${location.search.slice(
+                    <button type="button" class="btn btn-primary viewModalButton" style="width: 100%;" onclick="theRecommendAccessoriesModal('../images/recommend/${gender}/${location.search.slice(
               6
             )}/accessories/clothe${clothe}.jpg')" style="width: 100%;">View</button>
+            <button type="button" class="btn btn-primary viewModalButton" style="border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px; width: 100%;" onclick="payWithPaystack(${price}, '../images/recommend/${gender}/${location.search.slice(6)}/tops/clothe${clothe}.jpg')" style="width: 100%;"><del>N${hypePrice}</del> N${price} Buy</button>
                   </div>
 
                 </div>
@@ -623,6 +683,10 @@ var closeViewModal =
             }  else {
               clothe = random.toString();
             }
+
+            let price = Number(random) * 10 ** 4;
+            let hypePrice = Number(random) * 10 ** 4 + 20000;
+
             recommendShoes.innerHTML += `
 
           <div class="col-sm-3">
@@ -636,10 +700,11 @@ var closeViewModal =
             )}/shoes/clothe${clothe}.jpg')">
                   </div>
                   <div>
-                    <button type="button" class="btn btn-primary viewModalButton" style="border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px; width: 100%;" onclick="theRecommendShoesModal('../images/recommend/${gender}/${location.search.slice(
+                    <button type="button" class="btn btn-primary viewModalButton" style="width: 100%;" onclick="theRecommendShoesModal('../images/recommend/${gender}/${location.search.slice(
               6
             )}/shoes/clothe${clothe}.jpg')" style="width: 100%;">View</button>
+            <button type="button" class="btn btn-primary viewModalButton" style="border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px; width: 100%;" onclick="payWithPaystack(${price}, '../images/recommend/${gender}/${location.search.slice(6)}/tops/clothe${clothe}.jpg')" style="width: 100%;"><del>N${hypePrice}</del> N${price} Buy</button>
                   </div>
 
                 </div>
@@ -673,6 +738,8 @@ var closeViewModal =
 
         generateRandomArr();
       </script>
+
+      <script src="https://js.paystack.co/v1/inline.js"></script> 
 
       <section>
         <div class="sep-section"></div>

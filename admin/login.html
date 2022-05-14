@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/login.css">
+    <title>Wearz - Login</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+</head>
+
+<body>
+    <div class="col col-half hide-on-phone">
+        <div class="login-img" alt="Login Image"
+            style="background-image: url('../../images/login-image.jpg'); filter: brightness(0.5);"></div>
+    </div>
+
+    <div class="col col-half">
+        <div class="login-form-two">
+            <h1 style="text-align: center;">Welcome back to Wearz</h1>
+            <h2 style="text-align: center;">Admin Login</h2>
+            <form action="" class="form-control">
+                <small>Email</small>
+                <div><input class="input" type="text" id="email" autofocus></div>
+                <small>Password</small>
+                <div><input class="input" id="password" type="password"></div>
+                <input class="input-button" id="loginButton" value="Log In" type="button">
+            </form>
+            <div>
+                <!-- <small>You can <a href="sign-up.html">register here</a>.</small> -->
+            </div>
+            <div>
+                <small><a href="forget-password.html">Forgot Password?</a></small>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="../wardrobe/assets/flash/flash.min.css">
+    <script src="../wardrobe/assets/flash/flash.min.js"></script>
+    <script src="../wardrobe/assets/flash/jquery-3.6.0.min.js"></script>
+    <script src="../wardrobe/assets/flash/flash.jquery.min.js"></script>
+    <script src="../wardrobe/assets/base-url.js"></script>
+
+    <script>
+        let loginButton = document.getElementById('loginButton');
+
+        loginButton.onclick = async function () {
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            loginButton.value = 'Loading...';
+
+            if (email == '' || password == '') {
+                window.FlashMessage.warning('Username and password has to be at least 6 digits');
+            } else {
+                let response = await fetch(baseUrl + 'login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password
+                    })
+                });
+
+                let data = await response.json();
+
+                console.log(data);
+
+                if (data.status == true) {
+                    if(data.role == 'admin') {
+                        window.FlashMessage.success('Welcome Admin');
+                    localStorage.setItem('wearzToken', data.token);
+                    loginButton.value = 'Log In';
+                    setTimeout(
+                        () => {
+                            location.replace('/admin/index.html');
+                        }, 2000);
+                    }
+                    else {
+                        loginButton.value = 'Log In';
+                    window.FlashMessage.info('You are not authorized to access this page.');
+                    window.FlashMessage.info('You will be redirected to the Home page in 5 seconds');
+                    setTimeout(
+                        () => {
+                            location.replace('/index.html');
+                        }, 5000);
+                    }
+                } else {
+                    loginButton.value = 'Log In';
+                    window.FlashMessage.success('Incorrect username or password');
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

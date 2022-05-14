@@ -1,0 +1,606 @@
+﻿<!DOCTYPE html>
+<!--
+	Salient by TEMPLATE STOCK
+	templatestock.co @templatestock
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wearz - Wardrobe</title>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+
+    <!-- Custom Google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:400,500,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Crimson+Text:400,600"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Bootstrap CSS Style -->
+    <link rel="stylesheet" href="../wardrobe/assets/css/bootstrap.min.css" />
+
+    <!-- Template CSS Style -->
+    <link rel="stylesheet" href="../wardrobe/assets/css/style.css" />
+
+    <!-- Animate CSS  -->
+    <link rel="stylesheet" href="../wardrobe/assets/css/animate.css" />
+
+    <!-- FontAwesome 4.3.0 Icons  -->
+    <link rel="stylesheet" href="../wardrobe/assets/css/font-awesome.min.css" />
+
+    <!-- et line font  -->
+    <link
+      rel="stylesheet"
+      href="../wardrobe/assets/css/et-line-font/style.css"
+    />
+
+    <!-- BXslider CSS  -->
+    <link
+      rel="stylesheet"
+      href="../wardrobe/assets/css/bxslider/jquery.bxslider.css"
+    />
+
+    <!-- Owl Carousel CSS Style -->
+    <link
+      rel="stylesheet"
+      href="../wardrobe/assets/css/owl-carousel/owl.carousel.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../wardrobe/assets/css/owl-carousel/owl.theme.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../wardrobe/assets/css/owl-carousel/owl.transitions.css"
+    />
+
+    <!-- Magnific-Popup CSS Style -->
+    <link
+      rel="stylesheet"
+      href="../wardrobe/assets/css/magnific-popup/magnific-popup.css"
+    />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <!-- Preload the Whole Page -->
+    <div id="preloader">
+      <div id="loading-animation">&nbsp;</div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="header">
+      <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button
+              type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navigation-nav"
+            >
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"
+              ><img src="../wardrobe/assets/images/logo.png" alt=""
+            /></a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navigation-nav">
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a title="Log out">
+                  <div id="logoutButton" style="cursor: pointer">Log Out</div>
+                </a>
+              </li>
+
+              <!-- <li><a href="#features-section">Services</a></li> -->
+              <!-- <li><a href="#team-section">Team</a></li> -->
+              <!-- <li><a href="login.html">Login</a></li> -->
+              <!-- <li><a href="sign-up.html">Register</a></li> -->
+              <!-- <li><a href="#prices-section">Prices</a></li> -->
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+      </nav>
+    </header>
+    <!-- End Navbar -->
+
+    <div id="wrapper">
+      <style>
+        .h-img {
+          background-image: url("./assets/images/wardrobe-bg.jpg");
+          background-size: cover;
+        }
+
+        .h-img::before {
+          content: "";
+          position: absolute;
+          top: 0px;
+          right: 0px;
+          bottom: 0px;
+          left: 0px;
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+      </style>
+
+      <!-- Hero
+  ================================================== -->
+
+      <div class="w3-container w3-padding-24">
+        <h2>Admin Orders Panel</h2>
+        <p>Choose from the tab to filter out orders</p>
+      </div>
+      <div class="w3-bar w3-black">
+        <button class="w3-bar-item w3-button" onclick="orderStatus('pending')">
+          Pending Orders
+        </button>
+        <button
+          class="w3-bar-item w3-button"
+          onclick="orderStatus('processing')"
+        >
+          Processing Orders
+        </button>
+        <button class="w3-bar-item w3-button" onclick="orderStatus('complete')">
+          Complete Orders
+        </button>
+      </div>
+
+      <div id="pending" class="w3-container w3-padding-24 city">
+        <h2>Pending Orders</h2>
+
+        <table id="customers" class="pendingOrder">
+          <tr>
+            <th>Customer Email</th>
+            <th>Amount</th>
+            <th>Order Status</th>
+            <th>Transaction Ref</th>
+          </tr>
+        </table>
+      </div>
+
+      <div id="processing" class="w3-container w3-padding-24 city" style="display: none">
+        <h2>Processing Orders</h2>
+        
+        <table id="customers" class="processingOrder">
+          <tr>
+            <th>Customer Email</th>
+            <th>Amount</th>
+            <th>Order Status</th>
+            <th>Transaction Ref</th>
+          </tr>
+        </table>
+      </div>
+
+      <div id="complete" class="w3-container w3-padding-24 city" style="display: none">
+        <h2>Complete Orders</h2>
+        <table id="customers" class="completeOrder">
+          <tr>
+            <th>Customer Email</th>
+            <th>Amount</th>
+            <th>Order Status</th>
+            <th>Transaction Ref</th>
+          </tr>
+        </table>
+      </div>
+
+      
+
+      <link rel="stylesheet" href="../wardrobe/assets/flash/flash.min.css" />
+      <script src="../wardrobe/assets/flash/flash.min.js"></script>
+      <script src="../wardrobe/assets/flash/jquery-3.6.0.min.js"></script>
+      <script src="../wardrobe/assets/flash/flash.jquery.min.js"></script>
+      <script src="../wardrobe/assets/base-url.js"></script>
+
+      <script>
+        function orderStatus(orderStatus) {
+          var i;
+          var x = document.getElementsByClassName("city");
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+          }
+          document.getElementById(orderStatus).style.display = "block";
+        }
+
+        const pendingOrderTab = document.querySelector('.pendingOrder');
+        const processingOrderTab = document.querySelector('.processingOrder');
+        const completeOrderTab = document.querySelector('.completeOrder');
+
+        async function fetchAllOrders() {
+          let response = await fetch(baseUrl + "order/orders", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              token: localStorage.getItem("wearzToken")
+            }
+          });
+
+          let data = await response.json();
+
+          
+          let pendingOrders = data.orders.filter(order => {
+            return order.orderStatus == 'pending'
+          });
+
+          let processingOrders = data.orders.filter(order => {
+            return order.orderStatus == 'processing'
+          });
+
+          let completeOrders = data.orders.filter(order => {
+            return order.orderStatus == 'complete'
+          });
+
+          let tableDef = `
+          <tr>
+              <tr>
+            <th>Customer Email</th>
+            <th>Amount</th>
+            <th>Order Status</th>
+            <th>Transaction Ref</th>
+          </tr>
+          `;
+
+          if(pendingOrders.length == 0) {
+            pendingOrderTab.innerHTML = `
+            ${tableDef}
+              <td colspan="4" style="text-align: center;"> No pending order</td>  
+            </tr>
+            `;
+          } else if (processingOrders.length == 0) {
+            processingOrderTab.innerHTML = `
+            ${tableDef}
+              <td colspan="4" style="text-align: center;"> No processing order</td>  
+            </tr>
+            `;
+          } else if (completeOrders.length == 0) {
+            completeOrderTab.innerHTML = `
+            ${tableDef}
+              <td colspan="4" style="text-align: center;"> No Completed Order order</td>  
+            </tr>
+            `;
+          }
+
+          
+
+          pendingOrders.forEach(pendingOrder => {
+            
+            pendingOrderTab.innerHTML += `
+            
+              <tr>
+                <td><a href="/admin/orderDetails.html?orderId=${pendingOrder._id}">${pendingOrder.ownerId.email}</a></td>
+              <td>${pendingOrder.amount}</td>
+              <td>
+                <div>Order Status: ${pendingOrder.orderStatus}</div>
+                Change Order Status: <select name="pending-order" onclick="changeOrderStatus(value, '${pendingOrder._id}')" id="pendingDropdown">
+                  <option selected>----</option>
+                  <option value="cancelDelete">Cancel/Delete</option>
+                  <option value="processing">Processing</option>
+                  <option value="complete">Complete</option>
+                </select>
+                </td>
+                <td>${pendingOrder.paystackPaymentDetails.trxref}</td>
+            </tr>
+            
+            `;
+          });
+
+          processingOrders.forEach(processingOrder => {
+            // console.log(processingOrder._id);
+            processingOrderTab.innerHTML += `
+            <tr>
+             <td><a href="/admin/orderDetails.html?orderId=${processingOrder._id}">${processingOrder.ownerId.email}</a></td>
+              <td>${processingOrder.amount}</td>
+              <td>
+                <div>Order Status: ${processingOrder.orderStatus}</div>
+                Change Order Status: <select name="processing-orders" onclick="changeOrderStatus(value, '${processingOrder._id}')" id="processingDropdown">
+                  <option selected>----</option>
+                  <option value="pending">Pending</option>
+                  <option value="complete">Complete</option>
+                </select>  
+              </td>
+              <td>${processingOrder.paystackPaymentDetails.trxref}</td>
+            </tr>
+            `;
+          });
+
+          completeOrders.forEach(completeOrder => {
+            completeOrderTab.innerHTML += `
+            <tr>
+              <td><a href="/admin/orderDetails.html?orderId=${completeOrder._id}">${completeOrder.ownerId.email}</a></td>
+              <td>${completeOrder.amount}</td>
+              <td>${completeOrder.orderStatus}</td>
+              <td>${completeOrder.paystackPaymentDetails.trxref}</td>
+            </tr>
+            `;
+          });
+        }
+
+        fetchAllOrders();
+
+        async function changeOrderStatus(newStatus, orderId) {
+          if(newStatus == '----') return;
+
+          const initialFill = `
+            <tr>
+            <th>Customer Email</th>
+            <th>Amount</th>
+            <th>Order Status</th>
+            <th>Transaction Ref</th>
+          </tr>
+            `;
+
+          if(newStatus == 'cancelDelete') {
+            const response = await fetch(baseUrl + 'order/order', {
+            method: "DELETE",
+            headers: {
+              'Content-Type': 'application/json',
+              token: localStorage.getItem('wearzToken')
+            },
+            body: JSON.stringify({
+              orderID: orderId,
+            })
+          });
+
+          const data = await response.json();
+
+          if(data.successful == true) {
+            window.FlashMessage.success('Order deleted successfully');
+            pendingOrderTab.innerHTML = initialFill;
+            processingOrderTab.innerHTML = initialFill;
+            completeOrderTab.innerHTML = initialFill;
+            fetchAllOrders();
+          }
+
+          } else {
+            const response = await fetch(baseUrl + 'order/order', {
+            method: "PATCH",
+            headers: {
+              'Content-Type': 'application/json',
+              token: localStorage.getItem('wearzToken')
+            },
+            body: JSON.stringify({
+              orderID: orderId,
+              orderStatus: newStatus
+            })
+          });
+
+          const data = await response.json();
+
+          if(data.successful == true) {
+            window.FlashMessage.success('Order status changed successfully');
+            pendingOrderTab.innerHTML = initialFill;
+            processingOrderTab.innerHTML = initialFill;
+            completeOrderTab.innerHTML = initialFill;
+            fetchAllOrders();
+          }
+          }
+        }
+
+
+      </script>
+
+      <style>
+        #clothe-type {
+          background-color: transparent;
+          color: white;
+          padding: 20px;
+          width: 400px;
+          border: 2px solid white;
+          font-size: 20px;
+          border-radius: 50px;
+        }
+
+        #skin-type {
+          background-color: transparent;
+          color: orange;
+          padding: 20px;
+          width: 400px;
+          border: 2px solid orange;
+          font-size: 20px;
+          border-radius: 50px;
+        }
+
+        #clothe-type:focus,
+        #skin-type:focus {
+          outline: none;
+        }
+
+        .clothe-options {
+          color: black;
+        }
+
+        .clothe-options:hover {
+          color: black;
+        }
+
+        /* The Modal (background) */
+        .modal,
+        #viewModal {
+          display: none;
+          /* Hidden by default */
+          position: fixed;
+          /* Stay in place */
+          z-index: 1;
+          /* Sit on top */
+          padding-top: 100px;
+          /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%;
+          /* Full width */
+          height: 100%;
+          /* Full height */
+          overflow: auto;
+          /* Enable scroll if needed */
+          background-color: rgb(0, 0, 0);
+          /* Fallback color */
+          background-color: rgba(0, 0, 0, 0.4);
+          /* Black w/ opacity */
+          z-index: 10;
+        }
+
+        /* Modal Content */
+        .modal-content {
+          background-color: #fefefe;
+          margin: auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%;
+          margin-bottom: 50px;
+        }
+
+        /* The Close Button */
+        .close {
+          color: #aaaaaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+
+              #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+      #customers tr:hover {background-color: #ddd;}
+
+      #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: orange;
+        color: white;
+      }
+
+        @media (max-width: 425px) {
+          #clothe-type {
+            width: 100%;
+          }
+
+          #skin-type {
+            width: 100%;
+          }
+        }
+      </style>
+    </div>
+    <!-- End wrapper -->
+
+    <!-- Back-to-top
+  ================================================== -->
+    <div class="back-to-top">
+      <i class="fa fa-angle-up fa-3x"></i>
+    </div>
+    <!-- end back-to-top -->
+
+    <script>
+      async function checkLogin() {
+
+if (localStorage.getItem('wearzToken') == null) {
+    location.replace('/login.html');
+} else {
+    let url = 'https://wearz-api.herokuapp.com/v1/users/profile';
+    // let url = 'http://localhost:5000/v1/users/profile';
+    let req = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            token: localStorage.getItem('wearzToken')
+        }
+    });
+
+    req.json().then(r => {
+        
+        if (r.success == false) {
+            alert("Please login");
+            location.replace('/login.html');
+        } else if(r.user.role == 'user') {
+          alert("Only admins can login here. Login with admin details.");
+          location.replace('/login.html');
+        }
+    });
+}
+}
+
+checkLogin();
+
+logoutButton.onclick = function () {
+localStorage.removeItem('wearzToken');
+location.replace('/index.html');
+}
+    </script>
+
+    <!-- JS libraries and scripts -->
+    <script src="../wardrobe/assets/js/jquery-1.11.3.min.js"></script>
+    <script src="../wardrobe/assets/js/bootstrap.min.js"></script>
+    <script src="../wardrobe/assets/js/bootstrap-hover-dropdown.min.js"></script>
+    <script src="../wardrobe/assets/js/jquery.appear.min.js"></script>
+    <script src="../wardrobe/assets/js/jquery.bxslider.min.js"></script>
+    <script src="../wardrobe/assets/js/jquery.owl.carousel.min.js"></script>
+    <script src="../wardrobe/assets/js/jquery.countTo.js"></script>
+    <script src="../wardrobe/assets/js/jquery.easing.1.3.js"></script>
+    <script src="../wardrobe/assets/js/jquery.imagesloaded.min.js"></script>
+    <script src="../wardrobe/assets/js/jquery.isotope.js"></script>
+    <script src="../wardrobe/assets/js/jquery.placeholder.js"></script>
+    <script src="../wardrobe/assets/js/jquery.smoothscroll.js"></script>
+    <script src="../wardrobe/assets/js/jquery.stellar.min.js"></script>
+    <script src="../wardrobe/assets/js/jquery.waypoints.js"></script>
+    <script src="../wardrobe/assets/js/jquery.fitvids.js"></script>
+    <script src="../wardrobe/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../wardrobe/assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="../wardrobe/assets/js/jquery.countdown.js"></script>
+    <script src="../wardrobe/assets/js/jquery.navbar-scroll.js"></script>
+    <script src="../wardrobe/assets/js/jquery.gmaps.js"></script>
+    <script src="../wardrobe/assets/js/main.js"></script>
+  </body>
+</html>
